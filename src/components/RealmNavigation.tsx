@@ -41,7 +41,7 @@ const RealmNavigation = () => {
       initial={{ opacity: 0, x: -50 }}
       animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
       transition={{ duration: 0.5 }}
-      className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-4"
+      className="fixed left-8 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-6"
     >
       {realms.map((realm) => (
         <motion.button
@@ -52,14 +52,14 @@ const RealmNavigation = () => {
           }`}
           whileHover={{ x: 5 }}
         >
-          <span className={`w-10 h-10 flex items-center justify-center border rounded-sm transition-all duration-300 ${
+          <span className={`w-14 h-14 flex items-center justify-center border rounded-sm transition-all duration-300 text-xl ${
             activeRealm === realm.id 
               ? 'border-primary bg-primary/10 text-primary text-glow-gold' 
               : 'border-muted-foreground/30 group-hover:border-primary/50'
           }`}>
             {realm.symbol}
           </span>
-          <span className={`text-xs tracking-widest uppercase font-display transition-all duration-300 ${
+          <span className={`text-sm tracking-widest uppercase font-display transition-all duration-300 ${
             activeRealm === realm.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'
           }`}>
             {realm.name}
