@@ -31,16 +31,7 @@ const Header = () => {
         </motion.a>
 
         <nav className="hidden md:flex items-center gap-8">
-          {['Origins', 'Gods', 'Trials', 'Time', 'Register'].map((item, i) => (
-            <motion.a
-              key={i}
-              href={`#realm-${item.toLowerCase() === 'register' ? 'mortals' : item.toLowerCase()}`}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors uppercase tracking-wider font-body"
-              whileHover={{ y: -2 }}
-            >
-              {item}
-            </motion.a>
-          ))}
+          {/* Navigation links removed as requested */}
         </nav>
 
         <motion.button
