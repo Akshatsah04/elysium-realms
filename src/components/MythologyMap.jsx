@@ -1,78 +1,98 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const realms = [
     {
         id: 'origins',
-        name: 'Realm of Origins',
-        greekName: 'Chaos',
-        norseName: 'Ginnungagap',
+        name: 'Elysium',
+        greekName: 'Day 1',
+        norseName: '10:00 AM',
         x: 50,
         y: 15,
-        description: 'The primordial void from which all creation emerged. Where Greek Chaos meets Norse Ginnungagap.',
+        description: 'A two-day fusion of technology, entrepreneurship, and culture at MUJ — where bold ideas, real innovation, and powerful performances come together.',
         color: '#D4AF37',
-        connections: ['gods', 'prophecy']
+        connections: ['gods', 'prophecy'],
+        icon: 'icon/elysium.jpeg'
     },
     {
         id: 'gods',
-        name: 'Realm of the Gods',
-        greekName: 'Olympus',
-        norseName: 'Asgard',
+        name: 'Tech Eden 2.0',
+        greekName: 'Day 1',
+        norseName: '10:00 AM',
         x: 25,
         y: 35,
-        description: 'Where divine beings dwell. Mount Olympus and Asgard converge in eternal glory.',
+        description: 'A TEDx-style experience where innovators and creators share future-ready ideas that spark change and redefine possibilities.',
         color: '#3B82F6',
-        connections: ['origins', 'trials', 'time']
+        connections: ['time', 'prophecy', 'mortals'],
+        icon: 'icon/techeden.jpeg'
     },
     {
         id: 'prophecy',
-        name: 'Realm of Prophecy',
-        greekName: 'Delphi',
-        norseName: 'Well of Urd',
+        name: 'Swara',
+        greekName: 'Day 1',
+        norseName: '3:30 PM',
         x: 75,
         y: 35,
-        description: 'The seat of oracles and seers. Where fate is written and destinies revealed.',
+        description: 'A mesmerizing cultural showcase tracing the journey of women through Indian classical art — powerful, graceful, and deeply expressive.',
         color: '#8B5CF6',
-        connections: ['origins', 'time', 'trials']
+        connections: ['time', 'mortals', 'gods'],
+        icon: 'icon/swara.jpeg'
     },
-    {
-        id: 'trials',
-        name: 'Realm of Trials',
-        greekName: 'Labyrinth',
-        norseName: 'Midgard',
-        x: 50,
-        y: 55,
-        description: 'The testing grounds where heroes are forged through challenge and conquest.',
-        color: '#F97316',
-        connections: ['gods', 'prophecy', 'mortals']
-    },
+    // {
+    //     id: 'trials',
+    //     name: 'Realm of Trials',
+    //     greekName: 'Labyrinth',
+    //     norseName: 'Midgard',
+    //     x: 50,
+    //     y: 55,
+    //     description: 'The testing grounds where heroes are forged through challenge and conquest.',
+    //     color: '#F97316',
+    //     connections: ['gods', 'prophecy', 'mortals']
+    // },
     {
         id: 'time',
-        name: 'Realm of Time',
-        greekName: 'Chronos',
-        norseName: 'Ragnarök',
+        name: 'The Deal Room',
+        greekName: 'Day 2',
+        norseName: '10:30 AM',
         x: 15,
         y: 65,
-        description: 'Where past, present, and future intertwine. The countdown to destiny.',
+        description: 'A Shark Tank–style pitch arena where ideas are tested, challenged, and transformed into real-world opportunities.',
         color: '#10B981',
-        connections: ['gods', 'prophecy', 'mortals']
+        connections: ['prophecy', 'mortals', 'gods'],
+        icon: 'icon/dealroom.jpeg'
     },
     {
         id: 'mortals',
-        name: 'Realm of Mortals',
-        greekName: 'Athens',
-        norseName: 'Midgard',
+        name: 'Her Verdict',
+        greekName: 'Day 2',
+        norseName: '2:00 PM',
         x: 85,
         y: 65,
-        description: 'The world of humanity. Where legends begin their journey to ascension.',
+        description: 'A courtroom-style debate where logic, confidence, and clarity take the stand — and only the strongest arguments win.',
         color: '#EC4899',
-        connections: ['trials', 'time']
+        connections: ['time', 'prophecy', 'gods'],
+        icon: 'icon/herverdict.jpeg'
     }
 ];
 
 const MythologyMap = () => {
     const [selectedRealm, setSelectedRealm] = useState(null);
     const [hoveredRealm, setHoveredRealm] = useState(null);
+
+    useEffect(() => {
+        if (selectedRealm) {
+            document.body.style.overflow = 'hidden';
+            if (window.lenis) window.lenis.stop();
+        } else {
+            document.body.style.overflow = 'unset';
+            if (window.lenis) window.lenis.start();
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+            if (window.lenis) window.lenis.start();
+        };
+    }, [selectedRealm]);
 
     const scrollToRealm = (id) => {
         const element = document.getElementById(id);
@@ -118,7 +138,7 @@ const MythologyMap = () => {
                 </motion.div>
 
                 {/* Interactive Map */}
-                <div className="relative w-full max-w-4xl mx-auto aspect-[4/3] bg-obsidian-light/30 rounded-2xl border border-gold/20 overflow-hidden">
+                <div className="relative w-full max-w-4xl mx-auto aspect-[3/4] md:aspect-[4/3] bg-obsidian-light/30 rounded-2xl border border-gold/20 overflow-hidden">
                     {/* Constellation background */}
                     <div className="absolute inset-0 opacity-20">
                         {[...Array(50)].map((_, i) => (
@@ -169,7 +189,7 @@ const MythologyMap = () => {
                         <motion.div
                             key={realm.id}
                             className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
-                            style={{ left: `${realm.x}%`, top: `${realm.y}%` }}
+                            style={{ left: `${realm.x - 5}%`, top: `${realm.y - 5}%` }}
                             initial={{ opacity: 0, scale: 0 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: index * 0.1 + 0.5, type: 'spring' }}
@@ -194,21 +214,12 @@ const MythologyMap = () => {
                                     borderColor: realm.color,
                                     backgroundColor: `${realm.color}20`,
                                 }}
-                                whileHover={{ scale: 1.2 }}
-                                animate={{
-                                    boxShadow: hoveredRealm === realm.id
-                                        ? `0 0 30px ${realm.color}80`
-                                        : `0 0 10px ${realm.color}40`,
-                                }}
                             >
-                                <span className="text-2xl md:text-3xl">
-                                    {realm.id === 'origins' && '⚡'}
-                                    {realm.id === 'gods' && '👑'}
-                                    {realm.id === 'prophecy' && '🔮'}
-                                    {realm.id === 'trials' && '⚔️'}
-                                    {realm.id === 'time' && '⏳'}
-                                    {realm.id === 'mortals' && '🏛️'}
-                                </span>
+                                <img
+                                    src={realm.icon}
+                                    alt={realm.name}
+                                    className="absolute inset-0 w-full h-full object-cover rounded-full"
+                                />
                             </motion.div>
 
                             {/* Label */}
@@ -234,14 +245,14 @@ const MythologyMap = () => {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+                            className="fixed inset-0 z-500 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
                             onClick={() => setSelectedRealm(null)}
                         >
                             <motion.div
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 exit={{ scale: 0.8, opacity: 0 }}
-                                className="relative max-w-md w-full bg-obsidian-light border border-gold/30 rounded-2xl p-8 text-center"
+                                className="relative w-[90%] max-w-md bg-obsidian-light border border-gold/30 rounded-2xl p-6 md:p-8 text-center"
                                 onClick={e => e.stopPropagation()}
                             >
                                 {/* Glow */}
@@ -250,42 +261,38 @@ const MythologyMap = () => {
                                     style={{ backgroundColor: selectedRealm.color }}
                                 />
 
-                                <div className="relative z-10">
+                                <div className="relative z-100 h-auto md:h-[80%]">
                                     <div
-                                        className="w-20 h-20 mx-auto mb-4 rounded-full border-2 flex items-center justify-center text-4xl"
+                                        className="relative w-40 h-60 md:w-64 md:h-96 mx-auto mb-4 md:mb-6 rounded-xl border-2 overflow-hidden shadow-2xl"
                                         style={{
                                             borderColor: selectedRealm.color,
                                             backgroundColor: `${selectedRealm.color}20`,
                                         }}
                                     >
-                                        {selectedRealm.id === 'origins' && '⚡'}
-                                        {selectedRealm.id === 'gods' && '👑'}
-                                        {selectedRealm.id === 'prophecy' && '🔮'}
-                                        {selectedRealm.id === 'trials' && '⚔️'}
-                                        {selectedRealm.id === 'time' && '⏳'}
-                                        {selectedRealm.id === 'mortals' && '🏛️'}
+                                        <img
+                                            src={selectedRealm.icon}
+                                            alt={selectedRealm.name}
+                                            className="absolute inset-0 w-full h-full object-cover"
+                                        />
                                     </div>
 
-                                    <h3 className="font-cinzel text-2xl text-gold mb-2">
+                                    <h3 className="font-cinzel text-xl md:text-2xl text-gold mb-2">
                                         {selectedRealm.name}
                                     </h3>
 
-                                    <div className="flex justify-center gap-4 mb-4 text-sm">
+                                    <div className="flex justify-center gap-2 md:gap-4 mb-3 md:mb-4 text-xs md:text-sm">
                                         <span className="text-norse">{selectedRealm.norseName}</span>
                                         <span className="text-gold/30">•</span>
                                         <span className="text-greek">{selectedRealm.greekName}</span>
                                     </div>
 
-                                    <p className="text-gold/70 mb-6">
+                                    <p className="text-gold/70 text-xs md:text-sm mb-4 md:mb-6">
                                         {selectedRealm.description}
                                     </p>
 
                                     <button
-                                        onClick={() => {
-                                            scrollToRealm(selectedRealm.id);
-                                            setSelectedRealm(null);
-                                        }}
-                                        className="px-6 py-3 bg-gradient-to-r from-gold/20 to-gold/10 border border-gold/50 rounded-lg font-cinzel text-gold hover:from-gold/30 hover:to-gold/20 transition-all"
+                                        onClick={() => window.location.href = "https://docs.google.com/forms/d/17JyODAtgVXvShctfhLuNT0yUQ9w_3xzd1uc6SmBmduY/edit"}
+                                        className="w-full md:w-auto px-6 py-2 md:py-3 bg-gradient-to-r from-gold/20 to-gold/10 border border-gold/50 rounded-lg font-cinzel text-sm md:text-base text-gold hover:from-gold/30 hover:to-gold/20 transition-all"
                                     >
                                         Enter This Realm
                                     </button>
@@ -294,7 +301,7 @@ const MythologyMap = () => {
                                 {/* Close button */}
                                 <button
                                     onClick={() => setSelectedRealm(null)}
-                                    className="absolute top-4 right-4 text-gold/50 hover:text-gold transition-colors"
+                                    className="absolute top-2 right-2 md:top-4 md:right-4 text-gold/50 hover:text-gold transition-colors p-2"
                                 >
                                     ✕
                                 </button>

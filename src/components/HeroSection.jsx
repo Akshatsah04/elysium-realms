@@ -3,6 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import { motion } from 'framer-motion';
+import Time from './Time'
 
 // --- Sub-Components ---
 
@@ -253,7 +254,7 @@ const RuneSymbols = () => {
 
 const HeroSection = () => {
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <section id='ely' className="relative min-h-screen flex items-center justify-center overflow-hidden mt-10">
             {/* 3D Background */}
             <Scene3D />
 
@@ -316,30 +317,14 @@ const HeroSection = () => {
                 >
                     <button
                         className="btn-divine animate-glow-pulse"
-                        onClick={() => document.getElementById('realm-origins')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => window.location.href = "https://docs.google.com/forms/d/17JyODAtgVXvShctfhLuNT0yUQ9w_3xzd1uc6SmBmduY/edit"}
                     >
                         Enter the Realm
                     </button>
                 </motion.div>
 
-                {/* Scroll indicator */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1.5 }}
-                    className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                >
-                    <motion.div
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="flex flex-col items-center gap-2 text-muted-foreground"
-                    >
-                        <span className="text-xs tracking-widest uppercase">Descend</span>
-                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                        </svg>
-                    </motion.div>
-                </motion.div>
+                <div><Time /></div>
+
             </div>
         </section>
     );

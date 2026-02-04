@@ -2,10 +2,11 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 const realms = [
+    { id: 'ely', name: 'Elysium', symbol: '𝕰' },
+    { id: 'gallery', name: 'Gallery', symbol: '⚔' },
+    { id: 'mythology-map', name: 'Nexus', symbol: '⚡' },
+    { id: 'realm-time', name: 'Chronicles', symbol: '⏳' },
     { id: 'realm-origins', name: 'Origins', symbol: 'Ω' },
-    { id: 'realm-gods', name: 'Gods', symbol: '⚡' },
-    { id: 'realm-trials', name: 'Trials', symbol: '⚔' },
-    { id: 'realm-time', name: 'Time', symbol: '⏳' },
     { id: 'realm-mortals', name: 'Mortals', symbol: '✦' },
 ];
 
@@ -18,14 +19,28 @@ const RealmNavigation = () => {
             // Show nav after hero
             setIsVisible(window.scrollY > window.innerHeight * 0.5);
 
-            // Detect active section
-            const sections = realms.map(r => document.getElementById(r.id));
-            const current = sections.find(section => {
-                if (!section) return false;
-                const rect = section.getBoundingClientRect();
-                return rect.top <= 200 && rect.bottom >= 200;
+            // Detect active section based on visibility (most visible section)
+            const viewportHeight = window.innerHeight;
+            let maxOverlap = 0;
+            let activeId = '';
+
+            realms.forEach(realm => {
+                const section = document.getElementById(realm.id);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    // Calculate visible height of the section
+                    const overlap = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0));
+
+                    // If this section takes up more space than the current max, set it as active
+                    // Adding a small buffer to prevent rapid switching when equally visible
+                    if (overlap > maxOverlap) {
+                        maxOverlap = overlap;
+                        activeId = realm.id;
+                    }
+                }
             });
-            if (current) setActiveRealm(current.id);
+
+            if (activeId) setActiveRealm(activeId);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -52,8 +67,8 @@ const RealmNavigation = () => {
                     whileHover={{ x: 5 }}
                 >
                     <span className={`w-14 h-14 flex items-center justify-center border rounded-sm transition-all duration-300 text-xl ${activeRealm === realm.id
-                            ? 'border-primary bg-primary/10 text-primary text-glow-gold'
-                            : 'border-muted-foreground/30 group-hover:border-primary/50'
+                        ? 'border-primary bg-primary/10 text-primary text-glow-gold'
+                        : 'border-muted-foreground/30 group-hover:border-primary/50'
                         }`}>
                         {realm.symbol}
                     </span>

@@ -8,6 +8,7 @@ import RealmTime from '@/components/RealmTime';
 import RealmMortals from '@/components/RealmMortals';
 import MythologyMap from '@/components/MythologyMap';
 import AmbientAudio from '@/components/AmbientAudio';
+import PastEvent from '@/components/Pastevent'
 import Footer from '@/components/Footer';
 
 const Index = () => {
@@ -16,11 +17,13 @@ const Index = () => {
             <Header />
             <RealmNavigation />
             <HeroSection />
+            <PastEvent />
             <MythologyMap />
+            <RealmTime />
             <RealmOrigins />
             {/* <RealmGods /> */}
             {/* <RealmTrials /> */}
-            <RealmTime />
+            
             <RealmMortals />
             <AmbientAudio />
             {/* <Footer /> */}

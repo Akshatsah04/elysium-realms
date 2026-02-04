@@ -5,13 +5,6 @@ import { useRef, useState } from 'react';
 const RealmMortals = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: '-100px' });
-    const [formData, setFormData] = useState({ name: '', email: '', college: '', event: '' });
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Registration:', formData);
-        // Handle form submission
-    };
 
     return (
         <section id="realm-mortals" className="realm-section">
@@ -23,7 +16,7 @@ const RealmMortals = () => {
                 <div className="absolute bottom-20 right-10 w-64 h-64 bg-norse/5 rounded-full blur-3xl" />
             </div>
 
-            <div className="container mx-auto px-6 relative z-10" ref={ref}>
+            <div className="container mx-auto px-6 relative z-10 mt-[5%]" ref={ref}>
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
                     animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -45,90 +38,19 @@ const RealmMortals = () => {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    className="max-w-2xl mx-auto"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 1.1 }}
+                    className='flex justify-center items-center'
                 >
-                    <form onSubmit={handleSubmit} className="glass-card p-8 md:p-12 rounded-lg divine-border">
-                        <div className="space-y-6">
-                            <div>
-                                <label className="block text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                                    Mortal Name
-                                </label>
-                                <input
-                                    type="text"
-                                    value={formData.name}
-                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                                    className="w-full bg-background/50 border border-border rounded-sm px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                                    placeholder="Enter your name"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                                    Ethereal Contact (Email)
-                                </label>
-                                <input
-                                    type="email"
-                                    value={formData.email}
-                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                    className="w-full bg-background/50 border border-border rounded-sm px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                                    placeholder="your@email.com"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                                    House of Learning (College)
-                                </label>
-                                <input
-                                    type="text"
-                                    value={formData.college}
-                                    onChange={(e) => setFormData({ ...formData, college: e.target.value })}
-                                    className="w-full bg-background/50 border border-border rounded-sm px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                                    placeholder="Your institution"
-                                    required
-                                />
-                            </div>
-
-                            <div>
-                                <label className="block text-sm text-muted-foreground uppercase tracking-wider mb-2">
-                                    Chosen Trial
-                                </label>
-                                <select
-                                    value={formData.event}
-                                    onChange={(e) => setFormData({ ...formData, event: e.target.value })}
-                                    className="w-full bg-background/50 border border-border rounded-sm px-4 py-3 text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer"
-                                    required
-                                >
-                                    <option value="">Select your trial...</option>
-                                    <option value="hackathon">The Forge of Hephaestus (Hackathon)</option>
-                                    <option value="ctf">Odin's Eye (CTF Challenge)</option>
-                                    <option value="coding">Arena of Ares (Competitive Coding)</option>
-                                    <option value="design">Muses' Canvas (UI/UX Design)</option>
-                                    <option value="case-study">Loki's Gambit (Case Study)</option>
-                                    <option value="robotics">Bifrost Bridge (Robotics)</option>
-                                </select>
-                            </div>
-
-                            <motion.button
-                                type="submit"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="w-full btn-divine mt-4"
-                            >
-                                Seal My Fate
-                            </motion.button>
-                        </div>
-
-                        <p className="text-xs text-muted-foreground text-center mt-6">
-                            By entering, you accept the sacred covenant of Elysium
-                        </p>
-                    </form>
+                    <button
+                        className="btn-divine animate-glow-pulse"
+                        onClick={() => window.location.href = "https://docs.google.com/forms/d/17JyODAtgVXvShctfhLuNT0yUQ9w_3xzd1uc6SmBmduY/edit"}
+                    >
+                        Enter the Realm
+                    </button>
                 </motion.div>
+                <div className="font-display text-6xl sm:text-9xl md:text-[15rem] lg:text-[25rem] font-bold mt-4 text-glow-gold absolute top-[120%] md:top-[135%] left-1/2 -translate-x-1/2">Elysium</div>
             </div>
         </section>
     );
