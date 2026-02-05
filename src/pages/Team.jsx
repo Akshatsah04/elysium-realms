@@ -93,7 +93,7 @@ const teamdetail = [
   },
 ];
 
-function Team({ showHeader = true }) {
+function Team() {
   const container = useRef();
   const tl = useRef(null);
   const tl1 = useRef(null);
@@ -178,7 +178,6 @@ function Team({ showHeader = true }) {
   return (
 
     <div ref={container} id="team" className="relative h-[150vh] sm:h-[120vh] md:h-[110vh] lg:h-[100vh] w-screen overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]">
-      {showHeader && <Header />}
       {/* Box Grid */}
       <div className="absolute top-[40%] sm:top-[50%] w-full h-[50%] flex justify-center items-center flex-wrap gap-4 ">
         {/* Chairperson */}
