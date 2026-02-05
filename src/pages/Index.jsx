@@ -10,20 +10,22 @@ import MythologyMap from '@/components/MythologyMap';
 import AmbientAudio from '@/components/AmbientAudio';
 import PastEvent from '@/components/pastevent'
 import Footer from '@/components/Footer';
+import Team from './Team';
 
 const Index = () => {
     return (
         <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-            <Header />
+            {/* <Header /> */}
             <RealmNavigation />
             <HeroSection />
-            <PastEvent />
             <MythologyMap />
             <RealmTime />
+            <PastEvent />
             <RealmOrigins />
+            <Team showHeader={false} />
             {/* <RealmGods /> */}
             {/* <RealmTrials /> */}
-            
+
             <RealmMortals />
             <AmbientAudio />
             {/* <Footer /> */}

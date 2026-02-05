@@ -209,7 +209,7 @@ const MythologyMap = () => {
 
                             {/* Node */}
                             <motion.div
-                                className="relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 flex items-center justify-center"
+                                className="relative w-16 h-20 md:w-20 md:h-[7rem] rounded-xl border-2 flex items-center justify-center"
                                 style={{
                                     borderColor: realm.color,
                                     backgroundColor: `${realm.color}20`,
@@ -218,7 +218,7 @@ const MythologyMap = () => {
                                 <img
                                     src={realm.icon}
                                     alt={realm.name}
-                                    className="absolute inset-0 w-full h-full object-cover rounded-full"
+                                    className="absolute inset-0 w-full h-full object-cover rounded-xl"
                                 />
                             </motion.div>
 

@@ -70,7 +70,7 @@ const Header = () => {
                     <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => document.getElementById('realm-mortals')?.scrollIntoView({ behavior: 'smooth' })}
+                        onClick={() => navigate('/event')}
                         className="px-4 py-2 border border-primary/50 text-primary text-sm uppercase tracking-wider font-body hover:bg-primary/10 transition-all rounded-sm mx-2 lg:mx-5"
                     >
                         Realm
@@ -140,7 +140,7 @@ const Header = () => {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.2 }}
-                                onClick={() => handleScrollNavigation('realm-mortals')}
+                                onClick={() => handleNavigation('/event')}
                                 className="text-2xl font-display text-primary text-glow-gold uppercase tracking-widest hover:scale-105 transition-transform"
                             >
                                 Realm

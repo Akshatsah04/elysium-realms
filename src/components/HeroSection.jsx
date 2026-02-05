@@ -287,7 +287,7 @@ const HeroSection = () => {
                     className="font-display text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-glow-gold"
                 >
                     <span className="text-foreground">ELYSIUM</span>
-                    <span className="text-primary"> 2026</span>
+                    <span className="text-primary"> 2.0</span>
                 </motion.h1>
 
                 <motion.p

@@ -93,7 +93,7 @@ const teamdetail = [
   },
 ];
 
-function Team() {
+function Team({ showHeader = true }) {
   const container = useRef();
   const tl = useRef(null);
   const tl1 = useRef(null);
@@ -177,21 +177,21 @@ function Team() {
 
   return (
 
-    <div ref={container} className="h-screen w-screen overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]">
-      <Header />
+    <div ref={container} id="team" className="relative h-[150vh] sm:h-[120vh] md:h-[110vh] lg:h-[100vh] w-screen overflow-hidden bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]">
+      {showHeader && <Header />}
       {/* Box Grid */}
-      <div className="absolute top-[50%] w-full h-[50%] flex justify-center items-center flex-wrap gap-4 ">
+      <div className="absolute top-[40%] sm:top-[50%] w-full h-[50%] flex justify-center items-center flex-wrap gap-4 ">
         {/* Chairperson */}
         <div className="flex flex-col justify-center items-center rounded-2xl ">
           <div
             onMouseEnter={() => handleMouseEnter(tl, tl1)}
             onMouseLeave={() => handleMouseLeave(tl, tl1)}
             onClick={() => setActiveCard(teamdetail[1])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[1].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-nowrap text-amber-50 mt-2">Chairperson</div>
+          <div className="font-bold text-nowrap text-amber-50 mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">Chairperson</div>
         </div>
 
         {/* Vice Chairperson */}
@@ -200,11 +200,11 @@ function Team() {
             onMouseEnter={() => handleMouseEnter(tl, tl2)}
             onMouseLeave={() => handleMouseLeave(tl, tl2)}
             onClick={() => setActiveCard(teamdetail[2])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[2].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-nowrap text-amber-50 mt-2">Vice-Chairperson</div>
+          <div className="font-bold text-nowrap text-amber-50 mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">Vice-Chairperson</div>
         </div>
 
         {/* HRD */}
@@ -213,11 +213,11 @@ function Team() {
             onMouseEnter={() => handleMouseEnter(tl, tl3)}
             onMouseLeave={() => handleMouseLeave(tl, tl3)}
             onClick={() => setActiveCard(teamdetail[3])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[3].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-nowrap text-amber-50 mt-2">Human Resource Director</div>
+          <div className="font-bold text-wrap text-amber-50 mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">HRD</div>
         </div>
 
         {/* MD */}
@@ -226,11 +226,11 @@ function Team() {
             onMouseEnter={() => handleMouseEnter(tl, tl4)}
             onMouseLeave={() => handleMouseLeave(tl, tl4)}
             onClick={() => setActiveCard(teamdetail[4])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[4].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-center text-amber-50 mt-2">Managing Director</div>
+          <div className="font-bold text-center text-amber-50 mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">Managing Director</div>
         </div>
 
         {/* GenSec */}
@@ -239,11 +239,11 @@ function Team() {
             onMouseEnter={() => handleMouseEnter(tl, tl5)}
             onMouseLeave={() => handleMouseLeave(tl, tl5)}
             onClick={() => setActiveCard(teamdetail[5])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[5].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-center text-amber-50 mt-2">General Secretary</div>
+          <div className="font-bold text-center text-amber-50 mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">General Secretary</div>
         </div>
 
         {/* Treasurer */}
@@ -252,11 +252,11 @@ function Team() {
             onMouseEnter={() => handleMouseEnter(tl, tl6)}
             onMouseLeave={() => handleMouseLeave(tl, tl6)}
             onClick={() => setActiveCard(teamdetail[6])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[6].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-nowrap text-amber-50 mt-2">Treasurer</div>
+          <div className="font-bold text-nowrap text-amber-50 mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">Treasurer</div>
         </div>
 
         {/* TechSec */}
@@ -265,11 +265,11 @@ function Team() {
             onMouseEnter={() => handleMouseEnter(tl, tl7)}
             onMouseLeave={() => handleMouseLeave(tl, tl7)}
             onClick={() => setActiveCard(teamdetail[7])}
-            className="box w-[11rem] h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
+            className="box w-[6rem] h-[10rem] lg:w-[8rem] lg:h-[12rem] xl:w-[9rem] xl:h-[13rem] 2xl:w-[11rem] 2xl:h-[15rem] bg-transparent rounded-2xl overflow-hidden cursor-pointer border border-primary/50 p-1"
           >
             <img src={teamdetail[7].img} alt="" className="h-full w-full object-cover rounded-2xl" />
           </div>
-          <div className="font-bold text-amber-50 text-center mt-2">Technical Secretary</div>
+          <div className="font-bold text-amber-50 text-center mt-2 text-sm lg:text-base xl:text-lg 2xl:text-xl">Technical Secretary</div>
         </div>
       </div>
 
